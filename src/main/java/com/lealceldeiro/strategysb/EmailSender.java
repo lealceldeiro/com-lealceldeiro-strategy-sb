@@ -39,7 +39,7 @@ public class EmailSender {
   }
 
   private static boolean sendEmailUsingSender(MailerSend sender, Email email) {
-    LOGGER.info("Attempting to sent email ");
+    LOGGER.info("Attempting to send email ");
     try {
       MailerSendResponse response = sender.emails().send(email);
       LOGGER.info("Sent email with id " + response.messageId);
