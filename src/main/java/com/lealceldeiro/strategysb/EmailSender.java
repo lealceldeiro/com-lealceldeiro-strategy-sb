@@ -4,9 +4,9 @@ import com.mailersend.sdk.MailerSend;
 import com.mailersend.sdk.MailerSendResponse;
 import com.mailersend.sdk.emails.Email;
 import com.mailersend.sdk.exceptions.MailerSendException;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import java.util.logging.Logger;
 
 @Component
 public class EmailSender {
@@ -39,9 +39,10 @@ public class EmailSender {
   }
 
   private static boolean sendEmailUsingSender(MailerSend sender, Email email) {
+    LOGGER.info("Attempting to sent email ");
     try {
       MailerSendResponse response = sender.emails().send(email);
-      LOGGER.info("Attempting to send email " + response.messageId);
+      LOGGER.info("Sent email with id " + response.messageId);
     } catch (MailerSendException e) {
       LOGGER.warning("Email not sent");
       return false;
